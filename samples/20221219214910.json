@@ -1,0 +1,26 @@
+{
+  "name": "AgentAyaYoi",
+  "characters": {
+    "kamisato_ayaka": 1,
+    "yoimiya": 1,
+    "fatui_pyro_agent": 1
+  },
+  "actions": {
+    "gamblers_earrings": 2,
+    "paimon": 2,
+    "liben": 2,
+    "iron_tongue_tian": 1,
+    "liu_su": 1,
+    "parametric_transformer": 2,
+    "nre": 2,
+    "elemental_resonance_woven_flames": 2,
+    "changing_shifts": 2,
+    "strategize": 2,
+    "i_havent_lost_yet!": 2,
+    "leave_it_to_me!": 2,
+    "starsigns": 2,
+    "send_off": 2,
+    "northern_smoked_chicken": 2,
+    "minty_meat_rolls": 2
+  }
+}
