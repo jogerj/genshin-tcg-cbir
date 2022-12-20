@@ -26,8 +26,6 @@ class Searcher:
                 # value is the distance we just computed, representing
                 # how 'similar' the image in the index is to our query
                 results[row[0]] = d
-            # close the reader
-            f.close()
         # sort our results, so that the smaller distances (i.e. the
         # more relevant images are at the front of the list)
         results = sorted([(v, k) for (k, v) in results.items()])

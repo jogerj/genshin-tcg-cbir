@@ -23,6 +23,12 @@ Work based on https://pyimagesearch.com/2014/12/01/complete-guide-building-image
 3. Reading single card images and searching from index:
 
     ```sh
-    python search.py --index characters_index.csv --query ../samples/xiangling-test.png --result-path ../images/
-    python search.py --index actions_index.csv --query ../samples/paimon-test.png --result-path ../images/
+    python search.py --index characters_index.csv --query ../samples/xiangling-test.png --result-path ../images/characters
+    python search.py --index actions_index.csv --query ../samples/paimon-test.png --result-path ../images/actions
+    ```
+
+4. Reading "Deck Preview" image generated in Genshin Impact and generate dictionary in json format
+
+    ```sh
+    python generate_json.py -q ../samples/20221219214910.png -r ../images
     ```
