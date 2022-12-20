@@ -30,3 +30,9 @@ cd python
 python indexer.py --dataset ../images/characters --index characters_index.csv
 python indexer.py --dataset ../images/actions --index actions_index.csv
 ```
+
+## License
+
+[MIT](LICENSE)
+
+This project is not affiliated with HoYoVerse. Genshin Impact, game content and materials are trademarks and copyrights of HoYoVerse.
