@@ -68,6 +68,7 @@ def generate(args):
         img_card = crop_card(query_img, pos[0], pos[1], char_w, char_h)
         card_id = search_card(img_card, cd, char_searcher)
         characters[card_id] = 1
+        # don't care about number of blank cards
         # cv2.imshow(card_id, img_card)
         # cv2.waitKey(0)
 
@@ -75,7 +76,7 @@ def generate(args):
         img_card = crop_card(query_img, pos[0], pos[1], act_w, act_h)
         card_id = search_card(img_card, cd, act_searcher)
         if card_id in actions:
-            actions[card_id] = 2
+            actions[card_id] += 1
         else:
             actions[card_id] = 1
         # cv2.imshow(card_id, img_card)

@@ -28,9 +28,9 @@ class ColorDescriptor:
         # for (startX, endX, startY, endY) in segments:
         # # construct a mask for each corner of the image, subtracting
         # # the elliptical center from it
-        #     cornerMask = np.zeros(image.shape[:2], dtype = "uint8")
-        #     cv2.rectangle(cornerMask, (startX, startY), (endX, endY), 255, -1)
-        #     cornerMask = cv2.subtract(cornerMask, ellipMask)
+            # cornerMask = np.zeros(image.shape[:2], dtype = "uint8")
+            # cv2.rectangle(cornerMask, (startX, startY), (endX, endY), 255, -1)
+            # cornerMask = cv2.subtract(cornerMask, ellipMask)
         # extract a color histogram from the elliptical region and
         # update the feature vector
         hist = self.histogram(image, ellipMask)
