@@ -4,7 +4,7 @@ Implementation of Contend-Based Image Retrieval (CIBR) to extract data from Gens
 
 ## Extracting deck data
 
-1. To generate image, go to the deck, select the "..." menu -> "Preview Deck" -> "Share image". The image will be stored in your ScreenShots folder.
+1. To generate image, go to the deck in Casket of Tomes, select the "..." menu -> "Preview Deck" -> "Share" -> "Save". The image will be stored in your ScreenShots folder.
 ![Example Deck](samples/20221219214910.png)
 
 2. Run the following:
