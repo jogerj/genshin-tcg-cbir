@@ -7,6 +7,7 @@ from colordescriptor import ColorDescriptor
 from searcher import Searcher
 import time
 
+
 def search_card(img, cd, searcher):
     """_summary_
 
@@ -20,7 +21,7 @@ def search_card(img, cd, searcher):
     """
     features = cd.describe(img)
     results = searcher.search(features, 1)
-    
+
     return results[0][1]
 
 
@@ -40,7 +41,7 @@ def crop_card(img, x, y, w, h):
     return img[y:y+h, x:x+w]
 
 
-def generate(args):    
+def generate(args):
     wts = time.time()
     ets = time.process_time()
 
@@ -51,13 +52,12 @@ def generate(args):
     char_searcher = Searcher(args["characters_index"])
     act_searcher = Searcher(args["actions_index"])
 
-
     cd = ColorDescriptor((8, 12, 3))
     query_img = cv2.imread(args["query"])
 
-
     char_pos = DIMENSIONS['characters']['pos']
-    char_h, char_w = (DIMENSIONS['characters']['h'], DIMENSIONS['characters']['w'])
+    char_h, char_w = (DIMENSIONS['characters']['h'],
+                      DIMENSIONS['characters']['w'])
     act_pos = DIMENSIONS['actions']['pos']
     act_h, act_w = (DIMENSIONS['actions']['h'], DIMENSIONS['actions']['w'])
 
@@ -82,7 +82,6 @@ def generate(args):
         # cv2.imshow(card_id, img_card)
         # cv2.waitKey(0)
 
-
     result = {
         "name": str(args['name']),
         "characters": characters,
@@ -102,6 +101,7 @@ def generate(args):
 
     return result
 
+
 if __name__ == '__main__':
     # construct the argument parser and parse the arguments
     ap = argparse.ArgumentParser()
@@ -118,6 +118,5 @@ if __name__ == '__main__':
     ap.add_argument("-n", "--name", required=False, default="My Deck",
                     help="Name of deck")
     args = vars(ap.parse_args())
-    print(args)
-    print(type(args))
+    print('args:', args)
     generate(args)

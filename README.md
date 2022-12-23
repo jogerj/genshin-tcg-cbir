@@ -15,11 +15,14 @@ Implementation of Contend-Based Image Retrieval (CIBR) to extract data from Gens
      python generate_json.py -q path/to/image.png -r ../images
      ```
 
-   - Node.js
+   - In web browser:
 
-     ```text
-     Soon™
+     ```sh
+     cd js/genshin-tcg-cbir
+     npm run index    # run once to index all
+     npm run start    # run demo in browser
      ```
+
 
 ## Indexing more cards
 

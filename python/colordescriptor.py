@@ -24,6 +24,8 @@ class ColorDescriptor:
         (axesX, axesY) = (int(w * 0.75) // 2, int(h * 0.75) // 2)
         ellipMask = np.zeros(image.shape[:2], dtype = "uint8")
         cv2.ellipse(ellipMask, (cX, cY), (axesX, axesY), 0, 0, 360, 255, -1)
+
+
         # loop over the segments
         # for (startX, endX, startY, endY) in segments:
         # # construct a mask for each corner of the image, subtracting
@@ -31,6 +33,8 @@ class ColorDescriptor:
             # cornerMask = np.zeros(image.shape[:2], dtype = "uint8")
             # cv2.rectangle(cornerMask, (startX, startY), (endX, endY), 255, -1)
             # cornerMask = cv2.subtract(cornerMask, ellipMask)
+            # hist = self.histogram(image, cornerMask)
+			# features.extend(hist)
         # extract a color histogram from the elliptical region and
         # update the feature vector
         hist = self.histogram(image, ellipMask)
