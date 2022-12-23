@@ -1,6 +1,6 @@
 # genshin-tcg-cbir
 
-Implementation of Contend-Based Image Retrieval (CIBR) to extract data from Genshin Impact generated Genius Invokation TCG image
+Implementation of Contend-Based Image Retrieval (CBIR) to extract data from Genshin Impact generated Genius Invokation TCG image
 
 ## Extracting deck data
 
