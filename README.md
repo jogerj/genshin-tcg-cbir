@@ -19,7 +19,6 @@ Implementation of Contend-Based Image Retrieval (CIBR) to extract data from Gens
 
      ```sh
      cd js/genshin-tcg-cbir
-     npm run index    # run once to index all
      npm run start    # run demo in browser
      ```
 
@@ -33,6 +32,13 @@ cd python
 python indexer.py --dataset ../images/characters --index characters_index.csv
 python indexer.py --dataset ../images/actions --index actions_index.csv
 ```
+or
+```sh
+cd js/genshin-tcg-cbir
+npm run index    # run once to index all
+```
+
+Index files generated in Python and Node.js are incompatible with each other, so generate them separately.
 
 ## License
 
