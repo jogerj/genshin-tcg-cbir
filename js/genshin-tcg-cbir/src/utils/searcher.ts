@@ -8,8 +8,8 @@ export class Search {
 
     indexData: IndexData[];
 
-    constructor(csvdata: IndexData[]) {
-        this.indexData = csvdata;
+    constructor(indexData: IndexData[]) {
+        this.indexData = indexData;
     }
 
     search(queryFeatures: Float32Array, limit: number = 10) {

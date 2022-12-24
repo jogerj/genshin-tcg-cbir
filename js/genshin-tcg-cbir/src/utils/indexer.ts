@@ -5,23 +5,24 @@ import * as fs from 'fs';
 import * as path from 'path';
 import cv from 'opencv-ts';
 import { ColorDescriptor } from './colordescriptor';
-
-const { getSync } = require('@andreekeberg/imagedata')
+const { getSync } = require('@andreekeberg/imagedata');
 
 async function onRuntimeInitialized() {
-    console.log('OpenCV Ready')
+    console.log('OpenCV Ready');
 
     const charactersPath = "../../images/characters/";
     const actionsPath = "../../images/actions/";
+    const indexFilename = "src/utils/cards-index.json";
+
+    // Check images to index
     const characters: string[] = glob.sync('*.png', { cwd: charactersPath });
     const actions: string[] = glob.sync('*.png', { cwd: actionsPath });
 
-
-    console.log(`Found ${characters.length} character cards in ${charactersPath}`)
-    console.log(`Found ${actions.length} action cards in ${actionsPath}`)
+    console.log(`Found ${characters.length} character cards in ${charactersPath}`);
+    console.log(`Found ${actions.length} action cards in ${actionsPath}`);
 
     // Generate features
-    const cd = new ColorDescriptor([8, 12, 3])
+    const cd = new ColorDescriptor([8, 12, 3]);
 
     let charactersIndex: { name: string, data: Float32Array }[] = [];
     for (let characterFile of characters) {
@@ -45,18 +46,24 @@ async function onRuntimeInitialized() {
         actionsIndex.push({ name: imageId, data: features });
     }
 
-    // Save results
-    let charactersIndexJson = JSON.stringify(charactersIndex, 
-        (k, v) => ArrayBuffer.isView(v) ? Array.from(v as unknown as ArrayLike<unknown>) : v, 2);
-    fs.writeFileSync("public/characters_index.json", charactersIndexJson);
-    let actionsIndexJson = JSON.stringify(actionsIndex, 
-        (k, v) => ArrayBuffer.isView(v) ? Array.from(v as unknown as ArrayLike<unknown>) : v, 2);
-    fs.writeFileSync("public/actions_index.json", actionsIndexJson);
+    console.log(`Generated features for ${charactersIndex.length} character cards.`);
+    console.log(`Generated features for ${actionsIndex.length} action cards.`);
 
-    console.log(`Generated features for ${charactersIndex.length} character cards.`)
-    console.log(`Generated features for ${actionsIndex.length} action cards.`)
+    // Save index
+    let cardsIndexJson = JSON.stringify({
+        "characters": charactersIndex,
+        "actions": actionsIndex
+    },
+        (k, v) => ArrayBuffer.isView(v) ? Array.from(v as unknown as ArrayLike<unknown>) : v, 2);
+    try {
+        fs.writeFileSync(indexFilename, cardsIndexJson);
+        console.log(`Saved index data to ${indexFilename}`);
+    } catch (err) {
+        console.error(err);
+    }
 }
 
+// Set above function to run only after OpenCV is initialized.
 cv.onRuntimeInitialized = onRuntimeInitialized;
 
 export { };

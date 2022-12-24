@@ -4,6 +4,7 @@ import { Search } from './utils/searcher';
 import { parseCards } from './utils/cardutils';
 import cv from 'opencv-ts';
 
+import cardsIndex from './utils/cards-index.json';
 
 interface Deck {
   name: string
@@ -15,31 +16,20 @@ interface Deck {
   }
 }
 
-
 const GenshinTCGImporter: React.FC<{}> = () => {
-
-  const [actionsSearcher, setActionsSearcher] = useState<Search>();
-  const [charSearcher, setCharSearcher] = useState<Search>();
-
   const [deckName, setDeckName] = useState<string>("My Deck");
   const [deck, setDeck] = useState<Deck>();
   const [deckText, setDeckText] = useState<string>("");
-
   const [deckImageURL, setDeckImageURL] = useState<string>("");
 
-  const init = () => {
-    fetch('./characters_index.json')
-      .then(response => response.json())
-      .then(data => setCharSearcher(new Search(data)))
-      .then(() => console.log("Fetched characters index"));
-    fetch('./actions_index.json')
-      .then(response => response.json())
-      .then(data => setActionsSearcher(new Search(data)))
-      .then(() => console.log("Fetched actions index"));
-  }
-
-  useEffect(() => { init() }, [])
   useEffect(() => { console.log(deck) }, [deck]);
+
+  const characterSearcher = new Search(cardsIndex.characters.map(
+    (v) => ({ "name": v.name, "data": new Float32Array(v.data) }
+    )));
+  const actionsSearcher = new Search(cardsIndex.actions.map(
+    (v) => ({ "name": v.name, "data": new Float32Array(v.data) }
+    )))
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
@@ -47,8 +37,9 @@ const GenshinTCGImporter: React.FC<{}> = () => {
       return
     }
     const file = files[0]
-    if (file.type !== "image/png") {
-      let err = new TypeError(`Input file must be a PNG image!`);
+    const acceptedFileTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
+    if (!acceptedFileTypes.includes(file.type)) {
+      let err = new TypeError(`Accepted input filetypes are PNG, JPG, WEBP, and GIF! Got ${file.type} instead.`);
       console.error(err);
       setDeckText(err.message);
       return;
@@ -60,9 +51,9 @@ const GenshinTCGImporter: React.FC<{}> = () => {
     console.log("Image loaded!");
     let queryMat = cv.imread('uploaded-image');
 
-    if (charSearcher && actionsSearcher) {
+    if (characterSearcher && actionsSearcher) {
       try {
-        let [characters, actions] = parseCards(queryMat, charSearcher, actionsSearcher);
+        let [characters, actions] = parseCards(queryMat, characterSearcher, actionsSearcher);
         let newDeck = { name: deckName, characters: characters, actions: actions };
         setDeck(newDeck);
         setDeckText(JSON.stringify(newDeck));
@@ -86,7 +77,6 @@ const GenshinTCGImporter: React.FC<{}> = () => {
       <textarea readOnly value={deckText} style={{ width: '50%', height: '12em' }}></textarea>
       <br />
       <button onClick={() => navigator.clipboard.writeText(deckText)}>Copy</button>
-
 
       {/* Dummy image to load in opencv */}
       <img id="uploaded-image" src={deckImageURL} alt="" onLoad={handleImageLoad} style={{ display: 'none' }} />
