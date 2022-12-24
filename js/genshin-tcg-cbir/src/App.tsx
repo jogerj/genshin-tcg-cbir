@@ -68,7 +68,7 @@ const GenshinTCGImporter: React.FC<{}> = () => {
 
   return (
     <>
-      <label>Deck name:</label> <input id="deckname" type="text" onChange={(e) => setDeckName(e.target.value)} />
+      <label>Deck name:</label> <input id="deckname" type="text" defaultValue={deckName} onChange={(e) => setDeckName(e.target.value)} />
       <br />
       <input id="file" type="file" onChange={handleFileChange} />
       <br />

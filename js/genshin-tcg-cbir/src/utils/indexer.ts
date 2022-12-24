@@ -14,10 +14,9 @@ async function onRuntimeInitialized() {
     const actionsPath = "../../images/actions/";
     const indexFilename = "src/utils/cards-index.json";
 
-    // Check images to index
+    // Check images to index. Assume all images are PNG files.
     const characters: string[] = glob.sync('*.png', { cwd: charactersPath });
     const actions: string[] = glob.sync('*.png', { cwd: actionsPath });
-
     console.log(`Found ${characters.length} character cards in ${charactersPath}`);
     console.log(`Found ${actions.length} action cards in ${actionsPath}`);
 
@@ -27,8 +26,11 @@ async function onRuntimeInitialized() {
     let charactersIndex: { name: string, data: Float32Array }[] = [];
     for (let characterFile of characters) {
         let imageId = characterFile.substring(0, characterFile.length - 4);
+        // Read image into fs
         let imageFile = fs.readFileSync(path.join(charactersPath, characterFile));
+        // Convert image in fs to ImageData object
         let imageData = getSync(imageFile) as ImageData;
+        // Now we can run OpenCV without reading from a DOM
         let imageMat = cv.matFromImageData(imageData);
         let features = cd.describeImage(imageMat);
         imageMat.delete();
