@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/genshin-tcg-cbir/static/css/main.073c9b0a.css",
+    "main.js": "/genshin-tcg-cbir/static/js/main.45c587b7.js",
+    "static/js/787.68c80891.chunk.js": "/genshin-tcg-cbir/static/js/787.68c80891.chunk.js",
+    "index.html": "/genshin-tcg-cbir/index.html",
+    "main.073c9b0a.css.map": "/genshin-tcg-cbir/static/css/main.073c9b0a.css.map",
+    "main.45c587b7.js.map": "/genshin-tcg-cbir/static/js/main.45c587b7.js.map",
+    "787.68c80891.chunk.js.map": "/genshin-tcg-cbir/static/js/787.68c80891.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.45c587b7.js"
+  ]
+}
