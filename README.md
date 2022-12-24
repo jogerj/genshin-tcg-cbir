@@ -1,6 +1,8 @@
-# genshin-tcg-cbir
+# Genshin TCG Deck Scanner
 
 Implementation of Contend-Based Image Retrieval (CBIR) to extract data from Genshin Impact generated Genius Invokation TCG image
+
+## [Demo](https://jogerj.github.io/genshin-tcg-cbir/)
 
 ## Extracting deck data
 
