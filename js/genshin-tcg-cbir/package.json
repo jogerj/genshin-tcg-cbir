@@ -1,5 +1,6 @@
 {
   "name": "genshin-tcg-cbir",
+  "homepage": "https://jogerj.github.io/genshin-tcg-cbir",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "index": "npx ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/utils/indexer.ts"
+    "index": "npx ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/utils/indexer.ts",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
