@@ -19,7 +19,7 @@ interface Deck {
 const GenshinTCGImporter: React.FC<{}> = () => {
   const [deckName, setDeckName] = useState<string>("My Deck");
   const [deck, setDeck] = useState<Deck>();
-  const [deckText, setDeckText] = useState<string>("");
+  const [deckText, setDeckText] = useState<string>("Select a deck image to scan!");
   const [deckImageURL, setDeckImageURL] = useState<string>("");
 
   useEffect(() => { console.log(deck) }, [deck]);
@@ -68,11 +68,15 @@ const GenshinTCGImporter: React.FC<{}> = () => {
 
   return (
     <>
-      <label>Deck name:</label> <input id="deckname" type="text" defaultValue={deckName} onChange={(e) => setDeckName(e.target.value)} />
+      <label>Deck name:</label> <input id="deckname" type="text" defaultValue={deckName} onChange={(e) => setDeckName(e.target.value)} style={{margin: '2em'}} />
       <br />
       <input id="file" type="file" onChange={handleFileChange} />
       <br />
-      <img id="image-preview" src={deckImageURL} alt="" width={'600px'} height={'815px'} />
+      {deck
+      ? <img id="image-preview" src={deckImageURL} alt="" width={'600px'} height={'815px'} style={{padding: '2em'}}/> 
+      : <img id="instructions" src={`${process.env.PUBLIC_URL}/share-deck.gif`} alt="" style={{padding: '2em'}}/>
+      }
+      
       <br />
       <textarea readOnly value={deckText} style={{ width: '50%', height: '12em' }}></textarea>
       <br />
