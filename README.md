@@ -7,9 +7,10 @@ Implementation of Contend-Based Image Retrieval (CBIR) to extract data from Gens
 ## Extracting deck data
 
 1. To generate image, go to the deck in Casket of Tomes, select the "..." menu -> "Preview Deck" -> "Share" -> "Save". The image will be stored in your ScreenShots folder.
-![Example Deck](samples/20221219214910.png)
+   
+   ![Share Deck](images/share-deck.gif)
 
-2. Run the following:
+1. Run the following:
    - Python 3:
 
      ```sh
